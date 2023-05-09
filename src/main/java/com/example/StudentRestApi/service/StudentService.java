@@ -36,4 +36,9 @@ public class StudentService {
     public void deleteStudent(int id){
          repository.deleteById(id);
     }
+
+    public Student getStudentById(Integer id){
+         Student student=repository.findById(id).orElse(null);
+         return student;
+     }
 }

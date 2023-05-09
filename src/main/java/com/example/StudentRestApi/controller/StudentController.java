@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
 public class StudentController {
 
     @Autowired
@@ -27,6 +27,12 @@ public class StudentController {
     public ResponseEntity<?> readAllStudents(){
         List<Student> studentList=service.readAllStudents();
         return new ResponseEntity<>(studentList,HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/studentById")
+    public ResponseEntity<?> getStudentById(@RequestParam String id){
+        Student student=service.getStudentById(Integer.valueOf(id));
+        return new ResponseEntity<>(student,HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/updateStudent")
